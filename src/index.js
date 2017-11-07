@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
+import { Provider } from 'mobx-react';
+import { StackNavigator } from 'react-navigation';
 import { StyleSheet } from 'react-native';
 import { Container, Content, Text, StyleProvider } from 'native-base';
+import stores from './stores';
 import getTheme from './theme/components';
+import { screens } from './screens';
+
+// Define navigator
+const Navigator = StackNavigator(screens, { headerMode: 'none', initialRouteName: 'Start', });
 
 class App extends Component {
   render = () => (
     <StyleProvider style={getTheme()}>
-          <Container>
-            <Content>
-              <Text>
-                Hello world!
-                (U-night app)
-              </Text>
-            </Content>
-          </Container>
-        </StyleProvider>
+      <Provider {...stores}>
+        <Navigator />
+      </Provider>
+    </StyleProvider>
   );
 }
 
-export { App }; 
+export { App };
