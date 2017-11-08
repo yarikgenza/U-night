@@ -9,6 +9,13 @@ const platformStyle = undefined;
 const isIphoneX = platform === "ios" && deviceHeight === 812 && deviceWidth === 375;
 
 export default {
+
+  // custom defined
+  backgroundColor: 'black',
+  basicTextColor: 'white',
+
+
+
   platformStyle,
   platform,
   // AndroidRipple
