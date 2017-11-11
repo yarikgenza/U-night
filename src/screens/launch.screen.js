@@ -54,17 +54,22 @@ class LaunchScreen extends Component {
         animation="fadeIn"
         delay={2500}
       >
-        <Button style={styles.button} block light bordered>
+        <Button style={Object.assign({
+          borderColor: '#9e4ed4',
+          borderWidth: 2,
+        },styles.button)} block light bordered>
           <Text style={styles.buttonText}>Sign in</Text>
         </Button>
-        <Button style={styles.button} block light>
+        <Button style={Object.assign({
+          backgroundColor: '#9e4ed4',
+        }, styles.button)} block light>
           <Text style={styles.lightButtonText}>Skip</Text>
-          <Icon name="arrow-round-forward"/>
+          <Icon name="arrow-round-forward" style={{ color: 'white'}}/>
         </Button>
         <View style={styles.signUpContainer}>
           <Text style={styles.signupText}>
             Don't have an account?
-            <Text style={styles.signupTextBold}> Sign up!</Text>
+            <Text style={styles.signupTextBold}>  Sign up!</Text>
           </Text>
         </View>
 
@@ -107,7 +112,7 @@ const styles = {
     fontWeight: 'bold',
     fontFamily:'Monospace',
     fontSize: 17,
-    color: 'black',
+    color: 'white',
     marginLeft: 50,
   },
   button: {
@@ -115,9 +120,6 @@ const styles = {
     height: 50,
     margin: 5,
     borderRadius: 5
-  },
-  input: {
-    color: 'white',
   },
   signUpContainer: {
     width: deviceWidth - (deviceWidth / 4),
@@ -131,7 +133,7 @@ const styles = {
   signupTextBold: {
     fontWeight: 'bold',
     color: 'white',
-    fontSize: 17,
+    fontSize: 20,
   }
 };
 
