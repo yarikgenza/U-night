@@ -14,11 +14,13 @@ class LaunchScreen extends Component {
   
   state = {
     logoTop: new Animated.Value(deviceHeight / 8),
+    bgColor: new Animated.Value(0),
   }
 
   componentDidMount() {
     setTimeout(() => {
       this.animateLogo();
+      this.animateBackground();
     }, 2000)
   }
 
@@ -27,6 +29,17 @@ class LaunchScreen extends Component {
       this.state.logoTop,
       {
         toValue: -(theme.deviceHeight / 8),
+        duration: 1000,
+        easing: Easing.linear(),
+      }
+    ).start();
+  }
+
+  animateBackground() {
+    Animated.timing(
+      this.state.bgColor,
+      {
+        toValue: 300,
         duration: 1000,
         easing: Easing.linear(),
       }
@@ -76,11 +89,18 @@ class LaunchScreen extends Component {
       </Animatable.View>
     );
 
+    const bgColor = this.state.bgColor.interpolate({
+      inputRange: [0, 300],
+      outputRange: ['#9e4ed4', '#000000'],
+    });
+
     return (
       <Animatable.View
         animation="fadeIn"
         delay={250}
-        style={styles.layout}
+        style={Object.assign(styles.layout, {
+          backgroundColor: bgColor,
+        })}
       >
         {renderLogo()}
         {renderForm()}
@@ -94,7 +114,7 @@ const styles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: theme.backgroundColor,
+    //backgroundColor: theme.backgroundColor,
   },
   logo: {
     position: 'absolute',
