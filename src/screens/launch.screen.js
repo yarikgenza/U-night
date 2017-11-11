@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Animated, Easing, } from 'react-native';
-import { View, Text, Button, Item, Input, Form, Label } from 'native-base';
+import { View, Text, Button, Icon } from 'native-base';
 import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import * as Animatable from 'react-native-animatable';
@@ -54,12 +54,19 @@ class LaunchScreen extends Component {
         animation="fadeIn"
         delay={2500}
       >
-        { /* <Button style={styles.button} block light bordered>
-          <Text style={styles.buttonText}>Ввійти</Text>
+        <Button style={styles.button} block light bordered>
+          <Text style={styles.buttonText}>Sign in</Text>
         </Button>
         <Button style={styles.button} block light>
-          <Text style={styles.lightButtonText}>Зареєструватись</Text>
-    </Button> */ }
+          <Text style={styles.lightButtonText}>Skip</Text>
+          <Icon name="arrow-round-forward"/>
+        </Button>
+        <View style={styles.signUpContainer}>
+          <Text style={styles.signupText}>
+            Don't have an account?
+            <Text style={styles.signupTextBold}> Sign up!</Text>
+          </Text>
+        </View>
 
       </Animatable.View>
     );
@@ -94,12 +101,14 @@ const styles = {
   buttonText: {
     fontWeight: 'bold',
     fontFamily:'Monospace',
-    fontSize: 20,
+    fontSize: 17,
   },
   lightButtonText: {
     fontWeight: 'bold',
+    fontFamily:'Monospace',
     fontSize: 17,
     color: 'black',
+    marginLeft: 50,
   },
   button: {
     width: 300,
@@ -109,6 +118,20 @@ const styles = {
   },
   input: {
     color: 'white',
+  },
+  signUpContainer: {
+    width: deviceWidth - (deviceWidth / 4),
+    marginTop: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  signupText: {
+    color: 'white',
+  },
+  signupTextBold: {
+    fontWeight: 'bold',
+    color: 'white',
+    fontSize: 17,
   }
 };
 
