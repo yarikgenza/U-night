@@ -8,7 +8,7 @@ import getTheme from './theme/components';
 import { screens } from './screens';
 
 // Define navigator
-const Navigator = StackNavigator(screens, { headerMode: 'none', initialRouteName: 'Start', });
+const Navigator = StackNavigator(screens, { headerMode: 'none', initialRouteName: 'Event', });
 
 class App extends Component {
   render = () => (
