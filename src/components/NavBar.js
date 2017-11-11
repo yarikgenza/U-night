@@ -6,16 +6,15 @@ class NavBar extends Component {
     return (
       <Container>
       <Header>
-        <Left style={{ flex: 1, }}>
+      <Left>
           <Button transparent>
             <Icon name='menu' />
           </Button>
         </Left>
-        <Body style={{ flex: 1, }}>
+        <Body style={{ flex: 1}}>
           <Title>Events</Title>
         </Body>
-        <Right style={{ flex: 1, }}>
-        </Right>
+        <Right style={{ flex: 0.5}}></Right>
       </Header>
     </Container>
     );
