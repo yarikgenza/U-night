@@ -40,7 +40,7 @@ class LaunchScreen extends Component {
       this.state.bgColor,
       {
         toValue: 300,
-        duration: 1000,
+        duration: 1500,
         easing: Easing.linear(),
       }
     ).start();
@@ -91,7 +91,7 @@ class LaunchScreen extends Component {
 
     const bgColor = this.state.bgColor.interpolate({
       inputRange: [0, 300],
-      outputRange: ['#9e4ed4', '#000000'],
+      outputRange: ['#33052f', '#000000'],
     });
 
     return (
