@@ -1,15 +1,32 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Container, Content, Body, Text } from 'native-base';
 
 import NavBar from '../components/NavBar';
+import components from '../components/event';
+const {
+  EventList,
+} = components;
 
 class EventScreen extends Component {
   render() {
     return (
-      <View>
+      <Container style={styles.container}>
         <NavBar />
-      </View>
+        <Content padder>
+          <EventList/>
+          <Text style={{
+            alignSelf: 'center',
+            margin: 10,
+          }}>Tomorrow</Text>
+          <EventList/>
+        </Content>
+      </Container>
     )
+  }
+}
+
+const styles = {
+  container: { 
   }
 }
 
