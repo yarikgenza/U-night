@@ -46,6 +46,11 @@ class LaunchScreen extends Component {
     ).start();
   }
 
+  onSkipPress = () => {
+    const { navigate } = this.props.navigation;
+    navigate('Event');
+  }
+
   render() {
 
     const renderLogo = () => {
@@ -67,15 +72,12 @@ class LaunchScreen extends Component {
         animation="fadeIn"
         delay={2500}
       >
-        <Button style={Object.assign({
-          borderColor: '#9e4ed4',
-          borderWidth: 2,
-        },styles.button)} block light bordered>
+        <Button style={styles.signInBtn} block light bordered>
           <Text style={styles.buttonText}>Sign in</Text>
         </Button>
-        <Button style={Object.assign({
-          backgroundColor: '#9e4ed4',
-        }, styles.button)} block light>
+        <Button style={styles.skipBtn} block light
+          onPress={this.onSkipPress}
+        >
           <Text style={styles.lightButtonText}>Skip</Text>
           <Icon name="arrow-round-forward" style={{ color: 'white'}}/>
         </Button>
@@ -114,7 +116,6 @@ const styles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    //backgroundColor: theme.backgroundColor,
   },
   logo: {
     position: 'absolute',
@@ -135,11 +136,20 @@ const styles = {
     color: 'white',
     marginLeft: 50,
   },
-  button: {
+  skipBtn: {
     width: 300,
     height: 50,
     margin: 5,
-    borderRadius: 5
+    borderRadius: 5,
+    backgroundColor: '#9e4ed4',
+  },
+  signInBtn: {
+    width: 300,
+    height: 50,
+    margin: 5,
+    borderRadius: 5,
+    borderColor: '#9e4ed4',
+    borderWidth: 2,
   },
   signUpContainer: {
     width: deviceWidth - (deviceWidth / 4),
