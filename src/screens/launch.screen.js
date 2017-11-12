@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Animated, Easing, } from 'react-native';
+import { Image, Animated, Easing, TouchableHighlight } from 'react-native';
 import { View, Text, Button, Icon } from 'native-base';
 import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
@@ -51,6 +51,12 @@ class LaunchScreen extends Component {
     navigate('Event');
   }
 
+  onSignUpPress = () => {
+    const { navigate } = this.props.navigation;
+    // navigate('Signup');
+    alert('pressed');
+  }
+
   render() {
 
     const renderLogo = () => {
@@ -84,8 +90,10 @@ class LaunchScreen extends Component {
         <View style={styles.signUpContainer}>
           <Text style={styles.signupText}>
             Don't have an account?
-            <Text style={styles.signupTextBold}>  Sign up!</Text>
           </Text>
+          <TouchableHighlight onPress={this.onSignUpPress}>
+              <Text style={styles.signupTextBold}> Sign up!</Text>
+            </TouchableHighlight>
         </View>
 
       </Animatable.View>
@@ -159,11 +167,12 @@ const styles = {
   },
   signupText: {
     color: 'white',
+    margin: 10,
   },
   signupTextBold: {
     fontWeight: 'bold',
     color: 'white',
-    fontSize: 20,
+    fontSize: 20
   }
 };
 
