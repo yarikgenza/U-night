@@ -1,6 +1,59 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { Image,  StyleSheet, View } from 'react-native';
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base';
+
+const styles = StyleSheet.create ({  
+    MainContaiener: {
+      flex: 1, 
+      flexDirection: 'row', 
+      justifyContent: 'space-between',
+    },
+    
+    DateNum: {
+      fontSize: 30,
+      
+      marginLeft: 58,
+      
+      borderRightWidth: 3.5,
+      borderRightColor: '#C0C0C0',
+    },
+
+    ClubName: {
+      fontWeight: '400',
+      fontSize: 20,
+    },
+
+    ClubRating: {
+      opacity: 0.5,
+    },
+
+    DateMonth: {
+      fontSize: 15,
+    },
+
+    TextButton: {
+      fontWeight: '600',
+      fontSize: 22,
+      
+      color: '#000000',
+      
+      borderRightWidth: 4,
+      borderRightColor: '#800080',
+    },
+
+    Time: {
+      fontSize: 22,
+      fontWeight:'500',
+      
+      marginRight: 15,
+    },
+    DoubleDot: {
+      fontSize: 25,
+      fontWeight:'500',
+      
+      color: '#800080',
+    }
+});
 
 class EventCard extends Component {
   render () {
@@ -9,14 +62,22 @@ class EventCard extends Component {
       <CardItem>
         <Left>
           <Thumbnail source={{uri: 'http://lviv-online.com/ua/wp-content/uploads/2016/09/malevich-club-lviv-logo.jpg'}} />
-          <Body>
-            <Text>Malevich club </Text>
-            <Text note>Rating: 4.5</Text>
+
+          <Body style={styles.MainContaiener}>
+              <View style={styles.ClubInfo}>
+                <Text style={styles.ClubName}>Malevich club</Text>
+                <Text style={styles.ClubRating}>Rating:4</Text>
+              </View> 
+             
+              <View style={styles.Date}>
+                <Text style={styles.DateNum}>23</Text>
+              </View>
+               <View>
+                <Text style={styles.DateMonth}>Aug</Text>
+                <Text style={styles.DateDay}>monday</Text>
+              </View>   
           </Body>
         </Left>
-        <Right>
-        
-        </Right>
       </CardItem>
       <CardItem cardBody>
         
@@ -24,11 +85,23 @@ class EventCard extends Component {
         
       </CardItem>
       <CardItem>
-        <Left>
-          <Button transparent textStyle={{color: '#87838B'}}>
-            <Icon name="logo-github" />
-            <Text>1,926 stars</Text>
-          </Button>
+        <Left style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}> 
+          <Button transparent>
+            <Text style={styles.TextButton}>MONDAY PARTY</Text>
+          </Button> 
+          <Image 
+            style={{width: 25, height: 25}}
+            source={{uri: 'https://cdn4.iconfinder.com/data/icons/essential-part-2/32/171-Time-128.png'}} 
+          />
+          <Text style={styles.Time}>
+            22
+          <Text style={styles.DoubleDot}>
+            :
+          <Text style = {styles.Time}>
+            22
+        </Text>
+        </Text>
+      </Text>
         </Left>
       </CardItem>
     </Card>
