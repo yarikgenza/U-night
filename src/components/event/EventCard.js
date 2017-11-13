@@ -2,69 +2,6 @@ import React, { Component } from 'react';
 import { Image,  StyleSheet, View } from 'react-native';
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base';
 
-const styles = StyleSheet.create ({  
-    MainContaiener: {
-      flex: 1,  
-      justifyContent: 'space-between',
-    },
-    Date: {
-      flexDirection: 'row',
-      justifyContent: 'flex-end',
-      marginTop: -45,
-    },
-    Day: {
-      alignItems: 'flex-end',
-    },
-
-    DateMonth: {
-      fontSize: 20,
-      fontWeight: '500',
-
-      paddingLeft: 5,
-    },
-    DateDay: {
-      color: '#800080',
-    },
-    DateNum: {
-      fontWeight: '500',
-      fontSize: 20,
-    },
-
-    ClubName: {
-      fontWeight: '500',
-      fontSize: 20,
-    },
-
-    ClubRating: {
-      opacity: 0.5,
-    },
-
-    TextButton: {
-      fontWeight: '600',
-      fontSize: 22,
-      
-      color: '#000000',
-    },
-
-    Time: {
-      fontSize: 24,
-      fontWeight:'500',
-      
-      lineHeight: 30,
-      marginRight: 15,
-      
-      borderLeftWidth: 4,
-      borderLeftColor: '#800080',
-
-      paddingLeft: 10,
-    },
-    DoubleDot: {
-      fontSize: 25,
-      fontWeight:'500',
-      color: '#800080',
-    }
-});
-
 class EventCard extends Component {
   render () {
     return ( 
@@ -72,18 +9,18 @@ class EventCard extends Component {
       <CardItem>
         <Left>
           <Thumbnail source={{uri: 'http://lviv-online.com/ua/wp-content/uploads/2016/09/malevich-club-lviv-logo.jpg'}} />
-          <Body style={styles.MainContaiener}>
-              <View style={styles.ClubInfo}>
-                <Text style={styles.ClubName}>Malevich club</Text>
-                <Text style={styles.ClubRating}>Rating:4</Text>
+          <Body style={styles.mainContaiener}>
+              <View style={styles.clubInfo}>
+                <Text style={styles.clubName}>Malevich club</Text>
+                <Text style={styles.clubRating}>Rating:4</Text>
               </View> 
              
-              <View style={styles.Date}>
-                <Text style={styles.DateNum}>23</Text>
-                <Text style={styles.DateMonth}>Aug</Text>
+              <View style={styles.date}>
+                <Text style={styles.dateNum}>23</Text>
+                <Text style={styles.dateMonth}>Aug</Text>
               </View>
-              <View style={styles.Day}>
-                <Text style={styles.DateDay}>monday</Text>
+              <View style={styles.day}>
+                <Text style={styles.dateDay}>monday</Text>
               </View>   
           </Body>
         </Left>
@@ -96,13 +33,13 @@ class EventCard extends Component {
       <CardItem>
         <Left style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}> 
           <Button transparent>
-            <Text style={styles.TextButton}>MONDAY PARTY</Text>
+            <Text style={styles.textButton}>MONDAY PARTY</Text>
           </Button> 
-          <Text style={styles.Time}>
+          <Text style={styles.time}>
             22
-          <Text style={styles.DoubleDot}>
+          <Text style={styles.doubleDot}>
             :
-          <Text style = {styles.Time}>
+          <Text style ={styles.time}>
             22
         </Text>
         </Text>
@@ -113,5 +50,68 @@ class EventCard extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create ({  
+  mainContaiener: {
+    flex: 1,  
+    justifyContent: 'space-between',
+  },
+  date: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginTop: -45,
+  },
+  day: {
+    alignItems: 'flex-end',
+  },
+
+  dateMonth: {
+    fontSize: 20,
+    fontWeight: '500',
+
+    paddingLeft: 5,
+  },
+  dateDay: {
+    color: '#800080',
+  },
+  dateNum: {
+    fontWeight: '500',
+    fontSize: 20,
+  },
+
+  clubName: {
+    fontWeight: '500',
+    fontSize: 20,
+  },
+
+  clubRating: {
+    opacity: 0.5,
+  },
+
+  textButton: {
+    fontWeight: '600',
+    fontSize: 22,
+    
+    color: '#000000',
+  },
+
+  time: {
+    fontSize: 24,
+    fontWeight:'500',
+    
+    lineHeight: 30,
+    marginRight: 15,
+    
+    borderLeftWidth: 4,
+    borderLeftColor: '#800080',
+
+    paddingLeft: 10,
+  },
+  doubleDot: {
+    fontSize: 25,
+    fontWeight:'500',
+    color: '#800080',
+  }
+});
 
 export default EventCard;
