@@ -14,11 +14,6 @@ class EventScreen extends Component {
         <NavBar />
         <Content padder>
           <EventList/>
-          <Text style={{
-            alignSelf: 'center',
-            margin: 10,
-          }}>Tomorrow</Text>
-          <EventList/>
         </Content>
       </Container>
     )
