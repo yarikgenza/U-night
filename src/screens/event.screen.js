@@ -27,6 +27,7 @@ class EventScreen extends Component {
 
 const styles = {
   container: { 
+    backgroundColor: '#330033',
   }
 }
 
