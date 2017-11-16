@@ -4,6 +4,8 @@ import { View, Text } from 'native-base';
 import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
 
+import FacebookLogin from '../components/auth/fb.login';
+
 import theme from '../theme';
 const { deviceHeight, deviceWidth } = theme;
 
@@ -22,6 +24,7 @@ class LoginScreen extends Component {
     return (
       <View style={styles.layout}>
         {renderLogo()}
+        <FacebookLogin/>
       </View>
     );
   }
