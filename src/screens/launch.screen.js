@@ -51,10 +51,9 @@ class LaunchScreen extends Component {
     navigate('Event');
   }
 
-  onSignUpPress = () => {
+  onSignInPress = () => {
     const { navigate } = this.props.navigation;
-    // navigate('Signup');
-    alert('pressed');
+    navigate('Login');
   }
 
   render() {
@@ -78,7 +77,9 @@ class LaunchScreen extends Component {
         animation="fadeIn"
         delay={2500}
       >
-        <Button style={styles.signInBtn} block light bordered>
+        <Button  onPress={this.onSignInPress}
+          style={styles.signInBtn} block light bordered
+        >
           <Text style={styles.buttonText}>Sign in</Text>
         </Button>
         <Button style={styles.skipBtn} block light
@@ -91,7 +92,7 @@ class LaunchScreen extends Component {
           <Text style={styles.signupText}>
             Don't have an account?
           </Text>
-          <TouchableHighlight onPress={this.onSignUpPress}>
+          <TouchableHighlight onPress={this.onSignInPress}>
               <Text style={styles.signupTextBold}> Sign up!</Text>
             </TouchableHighlight>
         </View>
