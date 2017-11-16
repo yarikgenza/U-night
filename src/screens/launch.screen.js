@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Animated, Easing, } from 'react-native';
+import { Image, Animated, Easing, TouchableHighlight } from 'react-native';
 import { View, Text, Button, Icon } from 'native-base';
 import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
@@ -46,6 +46,17 @@ class LaunchScreen extends Component {
     ).start();
   }
 
+  onSkipPress = () => {
+    const { navigate } = this.props.navigation;
+    navigate('Event');
+  }
+
+  onSignUpPress = () => {
+    const { navigate } = this.props.navigation;
+    // navigate('Signup');
+    alert('pressed');
+  }
+
   render() {
 
     const renderLogo = () => {
@@ -67,33 +78,29 @@ class LaunchScreen extends Component {
         animation="fadeIn"
         delay={2500}
       >
-        <Button style={Object.assign({
-          borderColor: '#9e4ed4',
-          borderWidth: 2,
-        },styles.button)} block light bordered>
+        <Button style={styles.signInBtn} block light bordered>
           <Text style={styles.buttonText}>Sign in</Text>
         </Button>
-        <Button style={Object.assign({
-          backgroundColor: '#9e4ed4',
-        }, styles.button)} block light>
+        <Button style={styles.skipBtn} block light
+          onPress={this.onSkipPress}
+        >
           <Text style={styles.lightButtonText}>Skip</Text>
           <Icon name="arrow-round-forward" style={{ color: 'white'}}/>
         </Button>
         <View style={styles.signUpContainer}>
           <Text style={styles.signupText}>
             Don't have an account?
-            <Text style={styles.signupTextBold}>  Sign up!</Text>
           </Text>
+          <TouchableHighlight onPress={this.onSignUpPress}>
+              <Text style={styles.signupTextBold}> Sign up!</Text>
+            </TouchableHighlight>
         </View>
-
       </Animatable.View>
     );
-
     const bgColor = this.state.bgColor.interpolate({
       inputRange: [0, 300],
       outputRange: ['#33052f', '#000000'],
     });
-
     return (
       <Animatable.View
         animation="fadeIn"
@@ -108,13 +115,11 @@ class LaunchScreen extends Component {
     );
   }
 }
-
 const styles = {
   layout: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    //backgroundColor: theme.backgroundColor,
   },
   logo: {
     position: 'absolute',
@@ -135,11 +140,20 @@ const styles = {
     color: 'white',
     marginLeft: 50,
   },
-  button: {
+  skipBtn: {
     width: 300,
     height: 50,
     margin: 5,
-    borderRadius: 5
+    borderRadius: 5,
+    backgroundColor: '#9e4ed4',
+  },
+  signInBtn: {
+    width: 300,
+    height: 50,
+    margin: 5,
+    borderRadius: 5,
+    borderColor: '#9e4ed4',
+    borderWidth: 2,
   },
   signUpContainer: {
     width: deviceWidth - (deviceWidth / 4),
@@ -149,12 +163,12 @@ const styles = {
   },
   signupText: {
     color: 'white',
+    margin: 10,
   },
   signupTextBold: {
     fontWeight: 'bold',
     color: 'white',
-    fontSize: 20,
+    fontSize: 20
   }
 };
-
 export default LaunchScreen;
