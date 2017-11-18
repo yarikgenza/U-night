@@ -24,20 +24,24 @@ export default class Auth {
       if (response.ok) {
         this.authProvider = 'facebook';
         this.isAuthorized = true;
-        this.saveAuthData();
       }
     } catch (error) {
       console.warn(error);
     }
   }
 
-  saveAuthData = async (provider) => {
+  isUserAuthorized = async () => {
     try {
-      await AsyncStorage.setItem('authProvider', this.authProvider);
-      await AsyncStorage.setItem('isAuthorized', 'true');
-    } catch (err) {
-      alert('smth wrong with asyncStorage: ', err);
+      const token = await getFbToken();
+      if (token) {
+        this.isAuthorized = true;
+        this.authProvider = 'facebook';
+        // TO-DO refresh token here to keep it up-to-date;
+        return true;
+      }
+      return false;
+    } catch (e) {
+      return false;
     }
   }
-
 }

@@ -8,20 +8,35 @@ import * as Animatable from 'react-native-animatable';
 import theme from '../theme';
 const { deviceHeight, deviceWidth } = theme;
 
+@inject('auth')
 @inject('ui') 
 @observer
 class LaunchScreen extends Component {
   
   state = {
+    showForm: false,
     logoTop: new Animated.Value(deviceHeight / 8),
     bgColor: new Animated.Value(0),
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.animateLogo();
+  componentDidMount = async () => {
+    const isAuthorized = await this.props.auth.isUserAuthorized();
+    if (!isAuthorized) {
       this.animateBackground();
-    }, 2000)
+      setTimeout(() => {
+        console.warn('navigating to event');
+        /* TO-DO: Uncomment it when event screen is available
+          const { navigation } = this.props.navigation;
+          navigate('Event');
+        */
+      }, 1500);
+    } else {
+      this.setState({ showForm: true, });
+      setTimeout(() => {
+        this.animateLogo();
+        this.animateBackground();
+      }, 2000)
+    }
   }
 
   animateLogo() {
@@ -111,7 +126,7 @@ class LaunchScreen extends Component {
         })}
       >
         {renderLogo()}
-        {renderForm()}
+        {this.state.showForm ? renderForm() : null }
       </Animatable.View>
     );
   }
