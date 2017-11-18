@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { observable, action } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import { Button, Text, Icon } from 'native-base';
-import { LoginManager, AccessToken } from 'react-native-fbsdk'
+import { LoginManager } from 'react-native-fbsdk';
 
 import theme from '../../theme';
-
-const FB_PERMISSIONS = ['public_profile', 'email'];
 
 @inject('auth')
 @inject('ui')
@@ -15,30 +13,17 @@ export default class FacebookLogin extends Component {
 
   handleFacebookLogin = async () => {
     try {
-      const result = await LoginManager.logInWithReadPermissions(FB_PERMISSIONS);
+      const result = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
       if (result.isCancelled) {
         alert('login cancelled');
       } else {
-        this.getToken();
+        const { auth, onAuthFinish } = this.props;
+        await auth.facebookAuth();
+        onAuthFinish();
       }
     } catch (error) {
       console.error('Something wrong with login: ', error);
     }
-  }
-
-  getToken = async () => {
-    try {
-      const data = await AccessToken.getCurrentAccessToken();
-      const token = data.accessToken.toString();
-      this.performAuth(token);
-    } catch (error) {
-      console.error('smth wrong with token', error);
-    }
-  }
-
-  @action performAuth = (token) => {
-    const { auth } = this.props;
-    auth.facebookAuth(token);
   }
 
   render () {

@@ -1,4 +1,5 @@
 import { extendObservable, action } from 'mobx';
+import { getFbToken } from '../utils/fb.token';
 import APIs from '../api';
 
 const { AuthApi } = APIs;
@@ -12,16 +13,17 @@ export default class Auth {
     extendObservable(this, {
       isAuthorized: false,
       authProvider: '',
-      token: '',
     }, state);
   }
 
-  @action facebookAuth = async (token) => {
+  @action facebookAuth = async () => {
     try {
+      const token = await getFbToken();
       const response = await api.facebookAuth(token);
       if (response.ok) {
-        // write provider and token to state
-        // write provider and token to asyncStorage
+        this.authProvider = 'facebook';
+        this.isAuthorized = true;
+        // TO-DO write provider and token to asyncStorage
       }
     } catch (error) {
       console.warn(error);

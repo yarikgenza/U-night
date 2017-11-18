@@ -13,6 +13,11 @@ const { deviceHeight, deviceWidth } = theme;
 @observer
 class LoginScreen extends Component {
 
+  onAuthFinish = () => {
+    const { navigate } = this.props.navigation;
+    navigate('Event');
+  }
+
   render() {
     const renderLogo = () => (
         <Image
@@ -24,7 +29,7 @@ class LoginScreen extends Component {
     return (
       <View style={styles.layout}>
         {renderLogo()}
-        <FacebookLogin/>
+        <FacebookLogin onAuthFinish={this.onAuthFinish}/>
       </View>
     );
   }
