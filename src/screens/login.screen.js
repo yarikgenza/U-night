@@ -29,7 +29,9 @@ class LoginScreen extends Component {
     return (
       <View style={styles.layout}>
         {renderLogo()}
-        <FacebookLogin onAuthFinish={this.onAuthFinish}/>
+        <View style={styles.formContainer}>
+          <FacebookLogin onAuthFinish={this.onAuthFinish}/>
+        </View>
       </View>
     );
   }
