@@ -1,3 +1,4 @@
+import { AsyncStorage } from 'react-native';
 import { extendObservable, action } from 'mobx';
 import { getFbToken } from '../utils/fb.token';
 import APIs from '../api';
@@ -23,10 +24,20 @@ export default class Auth {
       if (response.ok) {
         this.authProvider = 'facebook';
         this.isAuthorized = true;
-        // TO-DO write provider and token to asyncStorage
+        this.saveAuthData();
       }
     } catch (error) {
       console.warn(error);
     }
   }
+
+  saveAuthData = async (provider) => {
+    try {
+      await AsyncStorage.setItem('authProvider', this.authProvider);
+      await AsyncStorage.setItem('isAuthorized', 'true');
+    } catch (err) {
+      alert('smth wrong with asyncStorage: ', err);
+    }
+  }
+
 }
