@@ -2,7 +2,6 @@ import Api from '../api';
 
 const resource = 'api/events';
 
-
 /**
  * @name Class EventApi
  * @extends Api

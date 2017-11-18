@@ -8,6 +8,7 @@ import theme from '../../theme';
 
 const FB_PERMISSIONS = ['public_profile', 'email'];
 
+@inject('auth')
 @inject('ui')
 @observer
 export default class FacebookLogin extends Component {
@@ -15,13 +16,11 @@ export default class FacebookLogin extends Component {
   handleFacebookLogin = async () => {
     try {
       const result = await LoginManager.logInWithReadPermissions(FB_PERMISSIONS);
-
       if (result.isCancelled) {
         alert('login cancelled');
       } else {
         this.getToken();
       }
-
     } catch (error) {
       console.error('Something wrong with login: ', error);
     }
@@ -31,14 +30,15 @@ export default class FacebookLogin extends Component {
     try {
       const data = await AccessToken.getCurrentAccessToken();
       const token = data.accessToken.toString();
-      this.registerToken(token);
+      this.performAuth(token);
     } catch (error) {
       console.error('smth wrong with token', error);
     }
   }
 
-  @action registerToken = (token) => {
-    alert(`Token: ${token}`);
+  @action performAuth = (token) => {
+    const { auth } = this.props;
+    auth.facebookAuth(token);
   }
 
   render () {
@@ -49,7 +49,7 @@ export default class FacebookLogin extends Component {
         onPress={this.handleFacebookLogin}
       >
         <Icon name="logo-facebook" style={styles.fbIcon} />
-        <Text style={styles.buttonText}>Login with Facebook</Text>
+        <Text style={styles.buttonText}>Continue with Facebook</Text>
       </Button>
     )
   }
@@ -64,7 +64,7 @@ const styles = {
   },
   buttonText: {
     fontWeight: 'bold',
-    fontSize: 17
+    fontSize: 16
   },
   fbIcon: {
     fontSize: 40,
