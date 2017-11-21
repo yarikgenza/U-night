@@ -71,6 +71,11 @@ class LaunchScreen extends Component {
     navigate('Login');
   }
 
+  onSignUpPress = () => {
+    const { navigate } = this.props.navigation;
+    navigate('Login', { mode: 'signup' });
+  }
+
   render() {
 
     const renderLogo = () => {
@@ -107,9 +112,9 @@ class LaunchScreen extends Component {
           <Text style={styles.signupText}>
             Don't have an account?
           </Text>
-          <TouchableHighlight onPress={this.onSignInPress}>
-              <Text style={styles.signupTextBold}> Sign up!</Text>
-            </TouchableHighlight>
+          <TouchableHighlight onPress={this.onSignUpPress}>
+            <Text style={styles.signupTextBold}> Sign up!</Text>
+          </TouchableHighlight>
         </View>
       </Animatable.View>
     );
