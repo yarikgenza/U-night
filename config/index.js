@@ -1,3 +1,3 @@
 export default {
- backendUrl: 'localhost:8000',
+ backendUrl: 'http://192.168.43.131:8000',
 }
