@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { Image,  StyleSheet, View } from 'react-native';
+import { Image,  StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base';
-
 
   // Default values. Replace with provided by api when api ready.
 const DEFAULT_VALUES = {
@@ -16,8 +15,13 @@ const DEFAULT_VALUES = {
   }
 }
 
-
 class EventCard extends Component {
+
+  handleEventPress() {
+    const { navigate } = this.props.navigation;
+    navigate('EventCard');
+  }
+
   render () {
 
     const { data } = this.props;
@@ -47,7 +51,9 @@ class EventCard extends Component {
       return dow.format('m');
     }
 
-    return ( 
+    return (
+      <TouchableWithoutFeedback onPress={() => this.handleEventPress()}>
+       <View>
       <Card style={{ flex: 0, backgroundColor: 'black' }}>
       <CardItem>
         <Left>
@@ -79,6 +85,8 @@ class EventCard extends Component {
         </View>
       </CardItem>
     </Card>
+    </View>
+    </TouchableWithoutFeedback>
     );
   }
 }

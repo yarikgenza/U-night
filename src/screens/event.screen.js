@@ -13,7 +13,7 @@ class EventScreen extends Component {
       <Container style={styles.container}>
         <NavBar />
         <Content padder>
-          <EventList/>
+          <EventList {...this.props}/>
         </Content>
       </Container>
     )

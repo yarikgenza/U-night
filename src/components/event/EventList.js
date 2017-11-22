@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
+import { View } from 'react-native';
 import { List, Spinner } from 'native-base';
 import EventCard from './EventCard';
 
@@ -26,7 +27,7 @@ class EventList extends Component {
     const renderEvents = () => {
       const { events } = this;
       return events.map(item => (
-        <EventCard data={item} key={item._id} />
+        <EventCard data={item} key={item._id} {...this.props}/>
       ));
     }
 
