@@ -1,3 +1,3 @@
 export default {
- backendUrl: 'http://192.168.1.4:8000',
+ backendUrl: 'https://u-night-back-end.herokuapp.com',
 }

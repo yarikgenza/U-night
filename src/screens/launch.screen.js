@@ -21,14 +21,11 @@ class LaunchScreen extends Component {
 
   componentDidMount = async () => {
     const isAuthorized = await this.props.auth.isUserAuthorized();
-    if (!isAuthorized) {
+    if (isAuthorized) {
       this.animateBackground();
       setTimeout(() => {
-        console.warn('navigating to event');
-        /* TO-DO: Uncomment it when event screen is available
-          const { navigation } = this.props.navigation;
-          navigate('Event');
-        */
+        const { navigate } = this.props.navigation;
+        navigate('Event');
       }, 1500);
     } else {
       this.setState({ showForm: true, });
