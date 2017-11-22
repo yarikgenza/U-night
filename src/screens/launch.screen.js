@@ -8,20 +8,35 @@ import * as Animatable from 'react-native-animatable';
 import theme from '../theme';
 const { deviceHeight, deviceWidth } = theme;
 
+@inject('auth')
 @inject('ui') 
 @observer
 class LaunchScreen extends Component {
   
   state = {
+    showForm: false,
     logoTop: new Animated.Value(deviceHeight / 8),
     bgColor: new Animated.Value(0),
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.animateLogo();
+  componentDidMount = async () => {
+    const isAuthorized = await this.props.auth.isUserAuthorized();
+    if (!isAuthorized) {
       this.animateBackground();
-    }, 2000)
+      setTimeout(() => {
+        console.warn('navigating to event');
+        /* TO-DO: Uncomment it when event screen is available
+          const { navigation } = this.props.navigation;
+          navigate('Event');
+        */
+      }, 1500);
+    } else {
+      this.setState({ showForm: true, });
+      setTimeout(() => {
+        this.animateLogo();
+        this.animateBackground();
+      }, 2000)
+    }
   }
 
   animateLogo() {
@@ -51,10 +66,14 @@ class LaunchScreen extends Component {
     navigate('Event');
   }
 
+  onSignInPress = () => {
+    const { navigate } = this.props.navigation;
+    navigate('Login');
+  }
+
   onSignUpPress = () => {
     const { navigate } = this.props.navigation;
-    // navigate('Signup');
-    alert('pressed');
+    navigate('Login', { mode: 'signup' });
   }
 
   render() {
@@ -78,7 +97,9 @@ class LaunchScreen extends Component {
         animation="fadeIn"
         delay={2500}
       >
-        <Button style={styles.signInBtn} block light bordered>
+        <Button  onPress={this.onSignInPress}
+          style={styles.signInBtn} block light bordered
+        >
           <Text style={styles.buttonText}>Sign in</Text>
         </Button>
         <Button style={styles.skipBtn} block light
@@ -92,18 +113,15 @@ class LaunchScreen extends Component {
             Don't have an account?
           </Text>
           <TouchableHighlight onPress={this.onSignUpPress}>
-              <Text style={styles.signupTextBold}> Sign up!</Text>
-            </TouchableHighlight>
+            <Text style={styles.signupTextBold}> Sign up!</Text>
+          </TouchableHighlight>
         </View>
-
       </Animatable.View>
     );
-
     const bgColor = this.state.bgColor.interpolate({
       inputRange: [0, 300],
       outputRange: ['#33052f', '#000000'],
     });
-
     return (
       <Animatable.View
         animation="fadeIn"
@@ -113,12 +131,11 @@ class LaunchScreen extends Component {
         })}
       >
         {renderLogo()}
-        {renderForm()}
+        {this.state.showForm ? renderForm() : null }
       </Animatable.View>
     );
   }
 }
-
 const styles = {
   layout: {
     flex: 1,
@@ -175,5 +192,4 @@ const styles = {
     fontSize: 20
   }
 };
-
 export default LaunchScreen;
