@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import { Image,  StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base';
+
+import * as dateUtil from '../../utils/date';
+const {
+  getDateHour,
+  getDateMinute,
+  getDayNumber,
+  getMonthText,
+  getWeekDayText,
+} = dateUtil;
 
   // Default values. Replace with provided by api when api ready.
 const DEFAULT_VALUES = {
@@ -27,31 +35,6 @@ class EventCard extends Component {
   render () {
 
     const { data } = this.props;
-
-    const getDayNumber = (date) => {
-      const dow = moment(date);
-      return dow.format('D')
-    }
-
-    const getMonthText = (date) => {
-      const dow = moment(date);
-      return dow.format('MMM');
-    }
-
-    const getWeekDayText = (date) => {
-      const dow = moment(date);
-      return dow.format('dddd');
-    }
-
-    const getDateHour = (date) => {
-      const dow = moment(date);
-      return dow.format('H');
-    }
-
-    const getDateMinute = (date) => {
-      const dow = moment(date);
-      return dow.format('m');
-    }
 
     return (
       <TouchableWithoutFeedback onPress={() => this.handleEventPress()}>
