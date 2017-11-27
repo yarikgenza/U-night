@@ -19,7 +19,9 @@ class EventCard extends Component {
 
   handleEventPress() {
     const { navigate } = this.props.navigation;
-    navigate('EventCard', { event: this.props.data });
+    navigate('EventCard', {
+      event: Object.assign(DEFAULT_VALUES, this.props.data),
+    });
   }
 
   render () {

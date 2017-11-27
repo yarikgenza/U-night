@@ -3,6 +3,9 @@ import { Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 
 class NavBar extends Component {
   render () {
+
+    const { title } = this.props;
+
     return (
       <Header>
       <Left>
@@ -11,7 +14,7 @@ class NavBar extends Component {
           </Button>
         </Left>
         <Body style={{ flex: 1}}>
-          <Title>Events</Title>
+          <Title>{title || 'Events'}</Title>
         </Body>
         <Right style={{ flex: 0.5}}></Right>
       </Header>
