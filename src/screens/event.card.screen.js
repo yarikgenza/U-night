@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Container, Content, Card, CardItem, Thumbnail, Text, View, Left, Right, Body } from 'native-base';
+import { Container, Content, Card, CardItem, Thumbnail, Text, View, Left, Right, Body, Button } from 'native-base';
 import * as Animatable from 'react-native-animatable';
 
 import NavBar from '../components/NavBar';
@@ -56,6 +56,14 @@ class EventCardScreen extends Component {
          </Right>
         </CardItem>
           </View>
+           <Text style={styles.eventName}>LAST MONDAY PARTY</Text>
+           <CardItem statyle={styles.describeEvent}>
+              <Text style={styles.describeText}>27 листопада, понеділок - Last Monday Party з Igor Volkoff та його live club show. Відірвись на повну! Вхід - безкоштовно.</Text>
+          </CardItem>
+          <Text style={styles.additionalInfo}> Price: 5$   Age:  </Text> 
+          <Button full large style={styles.btnBook}> 
+            <Text style={styles.btnText}> Book a table </Text>
+          </Button>
         </Content>
       </Container>
     );
@@ -85,6 +93,32 @@ const styles = {
     fontSize: 25,
     fontWeight:'500',
     color: '#800080',
+  },
+  eventName: {
+    padding: 15,
+    fontSize: 17,
+    textAlign: 'center',
+  },
+  
+  describeText: {
+    paddingTop: 15,
+    paddingLeft: 25,
+    paddingBottom: 15,
+    fontSize: 19,
+  },
+  additionalInfo: {
+    paddingTop: 15,
+    paddingBottom: 15,
+    fontSize: 17,
+    textAlign: 'center',
+  },
+  btnBook: {
+    borderRadius: 0,
+    backgroundColor: '#7515a3',
+  },
+  btnText: {
+    fontSize: 17,
+    lineHeight: -1,
   }
 };
 
