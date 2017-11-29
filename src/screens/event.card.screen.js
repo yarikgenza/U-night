@@ -56,9 +56,9 @@ class EventCardScreen extends Component {
          </Right>
         </CardItem>
           </View>
-           <Text style={styles.eventName}>LAST MONDAY PARTY</Text>
+           <Text style={styles.eventName}>{event.name}</Text>
            <CardItem statyle={styles.describeEvent}>
-              <Text style={styles.describeText}>27 листопада, понеділок - Last Monday Party з Igor Volkoff та його live club show. Відірвись на повну! Вхід - безкоштовно.</Text>
+              <Text style={styles.describeText}>{DEFAULT_VALUES.description}</Text>
           </CardItem>
           <Text style={styles.additionalInfo}> Price: 5$   Age:  </Text> 
           <Button full large style={styles.btnBook}> 
@@ -96,7 +96,7 @@ const styles = {
   },
   eventName: {
     padding: 15,
-    fontSize: 17,
+    fontSize: 20,
     textAlign: 'center',
   },
   
