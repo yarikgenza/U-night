@@ -26,6 +26,9 @@ const DEFAULT_VALUES = {
 };
 
 class EventCardScreen extends Component {
+
+  onBookPress = () => { console.warn('not implemented now')};
+
   render() {
     const { event } = this.props.navigation.state.params;
 
