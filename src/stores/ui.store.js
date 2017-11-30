@@ -12,8 +12,11 @@ export default class Ui {
     }, state);
   }
 
-  @action
-  toggleDrawer(open) {
-    this.isDrawerOpen = ((open !== undefined) ? open : !this.isDrawerOpen);
+  @action closeDrawer() {
+    this.isDrawerOpen = false;
+  }
+
+  @action openDrawer() {
+    this.isDrawerOpen = true;
   }
 }
