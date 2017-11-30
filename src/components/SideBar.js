@@ -1,38 +1,38 @@
 import React, { Component } from 'react';
-import { Container, Content, View, List, Text, ListItem, Icon, Left, Right } from 'native-base';
+import { Container, Content, View, List, Text, ListItem, Icon, Left, Right, Thumbnail } from 'native-base';
+
+import theme from '../theme';
+const { deviceHeight, deviceWidth } = theme;
 
 const rows = [
   {
-    name: 'Places',
-    route: 'placesScreen',
+    name: 'Events',
+    route: 'Event',
     icon: 'ios-pin',
   },
   {
-    name: 'Events',
-    route: 'eventsScreen',
+    name: 'Scan code',
+    route: 'Scan',
     icon: 'flag',
   },
   {
-    name: 'History',
-    route: 'historyScreen',
+    name: 'Clubs',
+    route: 'Clubs',
     icon: 'md-checkmark-circle-outline',
+  },
+  {
+    name: 'Leaderboard',
+    route: 'Leaderboard',
+    icon: 'ios-contact',
   },
   {
     name: 'Profile',
     route: 'profileScreen',
     icon: 'ios-contact',
   },
-  {
-    name: 'Settings',
-    route: 'settingsScreen',
-    icon: 'ios-settings',
-  },
-  {
-    name: 'Help',
-    route: 'heplScreen',
-    icon: 'ios-help-circle',
-  },
 ];
+
+const avaUrl = 'https://scontent.flwo1-1.fna.fbcdn.net/v/t35.0-12/24251309_1975643022702654_91538323_o.jpg?oh=4f1ff6131abaebfc0476a6bc08268ee3&oe=5A22C612';
 
 class SideBar extends Component {
 
@@ -43,11 +43,51 @@ class SideBar extends Component {
           bounces={false}
           style={{ flex: 1, backgroundColor: '#fff' }}
         >
-         <Text>Hello from drawer</Text>
+        <View style={styles.menuHeader}>
+          <Thumbnail style={styles.avatar} source={{uri: avaUrl }} />
+          <Text style={styles.userName}>Yarik Genza</Text>
+          <Text style={styles.userStatus}>U-nighter</Text>
+        </View>
+         <List
+            dataArray={rows} renderRow={row => (
+              <ListItem button>
+                <Left>
+                  <Icon active name={row.icon} style={{ color: 'black', fontSize: 26, width: 30 }} />
+                  <Text>{row.name}</Text>
+                </Left>
+              </ListItem>
+            )}
+          />
         </Content>
       </Container>
     );
   }
 }
+
+const styles = {
+  menuHeader: {
+    backgroundColor: 'black',
+    height: deviceHeight / 2.5,
+    alignItems: 'center',
+  },
+  avatar: {
+    marginTop: 30,
+    width: deviceWidth / 3,
+    height: deviceHeight / 5,
+    borderRadius: deviceHeight / 4,
+    borderWidth: 3,
+    borderColor: 'rgb(130, 0, 141)',
+  },
+  userName: {
+    marginTop: 15,
+    color: 'white',
+    fontSize: 22,
+  },
+  userStatus: {
+    marginTop: 15,
+    color: '#FC29CE',
+    fontSize: 17,
+  }
+};
 
 export default SideBar;
