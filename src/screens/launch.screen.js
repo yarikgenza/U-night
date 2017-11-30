@@ -21,7 +21,7 @@ class LaunchScreen extends Component {
 
   componentDidMount = async () => {
     const isAuthorized = await this.props.auth.isUserAuthorized();
-    if (isAuthorized) {
+    if (!isAuthorized) {
       this.animateBackground();
       setTimeout(() => {
         const { navigate } = this.props.navigation;
