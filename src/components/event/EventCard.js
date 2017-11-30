@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
-import moment from 'moment';
-import { Image,  StyleSheet, View } from 'react-native';
+import { Image,  StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base';
 
+import * as dateUtil from '../../utils/date';
+const {
+  getDateHour,
+  getDateMinute,
+  getDayNumber,
+  getMonthText,
+  getWeekDayText,
+} = dateUtil;
 
   // Default values. Replace with provided by api when api ready.
 const DEFAULT_VALUES = {
@@ -11,44 +18,25 @@ const DEFAULT_VALUES = {
     logoUrl: 'http://lviv-online.com/ua/wp-content/uploads/2016/09/malevich-club-lviv-logo.jpg',
     rating: 4.5,
   },
-  event: {
-    photoUrl: 'https://scontent.flwo1-1.fna.fbcdn.net/v/t35.0-12/23516209_1967578123509144_294036789_o.jpg?oh=024b55ac16e78119d6f9b3b4a4b46c44&oe=5A0B9CDA',
-  }
 }
 
-
 class EventCard extends Component {
+
+  handleEventPress() {
+    const { navigate } = this.props.navigation;
+    navigate('EventCard', {
+      event: Object.assign(DEFAULT_VALUES, this.props.data),
+    });
+  }
+
   render () {
 
     const { data } = this.props;
 
-    const getDayNumber = (date) => {
-      const dow = moment(date);
-      return dow.format('D')
-    }
-
-    const getMonthText = (date) => {
-      const dow = moment(date);
-      return dow.format('MMM');
-    }
-
-    const getWeekDayText = (date) => {
-      const dow = moment(date);
-      return dow.format('dddd');
-    }
-
-    const getDateHour = (date) => {
-      const dow = moment(date);
-      return dow.format('H');
-    }
-
-    const getDateMinute = (date) => {
-      const dow = moment(date);
-      return dow.format('m');
-    }
-
-    return ( 
-      <Card style={{ flex: 0, backgroundColor: 'black' }}>
+    return (
+      <TouchableWithoutFeedback onPress={() => this.handleEventPress()}>
+       <View>
+      <Card style={{ flex: 0, /*backgroundColor: 'black'*/ }}>
       <CardItem>
         <Left>
            <Thumbnail source={{uri: DEFAULT_VALUES.club.logoUrl }} />
@@ -65,7 +53,7 @@ class EventCard extends Component {
          </Right>
       </CardItem>
       <CardItem cardBody>
-        <Image source={{uri: DEFAULT_VALUES.event.photoUrl }} style={styles.bodyImage}/>
+        <Image source={{uri: data.photoUrl }} style={styles.bodyImage}/>
       </CardItem>
       <CardItem style={{flex: 1}}>
         <Text style={styles.nameText}>{data.name}</Text>
@@ -79,6 +67,8 @@ class EventCard extends Component {
         </View>
       </CardItem>
     </Card>
+    </View>
+    </TouchableWithoutFeedback>
     );
   }
 }
