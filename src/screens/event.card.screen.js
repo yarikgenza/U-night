@@ -17,7 +17,6 @@ import theme from '../theme';
 const { deviceHeight, deviceWidth } = theme;
 
 const DEFAULT_VALUES = {
-  description: 'Last Monday Party з Igor Volkoff та його live club sax show. Відірвись так, ніби це твій останній понеділок! Вхід - безкоштовно.',
   club: {
     name: 'Malevich club',
     logoUrl: 'http://lviv-online.com/ua/wp-content/uploads/2016/09/malevich-club-lviv-logo.jpg',
@@ -37,9 +36,9 @@ class EventCardScreen extends Component {
         <NavBar title={event.name} />
         <Content>
           <View style={styles.imgContainer}>
-            <Animatable.Image animation="zoomInUp" source={{uri: event.event.photoUrl }} style={styles.imgContainer}/>
+            <Animatable.Image animation="bounceInUp" source={{uri: event.photoUrl }} style={styles.imgContainer}/>
           </View>
-          <View style={styles.clubContainer}>
+          <Animatable.View animation="fadeInUp" delay={100} style={styles.clubContainer}>
             <CardItem>
               <Left>
                 <Thumbnail source={{uri: DEFAULT_VALUES.club.logoUrl }} />
@@ -55,15 +54,17 @@ class EventCardScreen extends Component {
           </View>
          </Right>
         </CardItem>
-          </View>
+          </Animatable.View>
+          <Animatable.View animation="fadeInUp" delay={200}>
            <Text style={styles.eventName}>{event.name}</Text>
            <CardItem statyle={styles.describeEvent}>
-              <Text style={styles.describeText}>{DEFAULT_VALUES.description}</Text>
+              <Text style={styles.describeText}>{event.description}</Text>
           </CardItem>
           <Text style={styles.additionalInfo}> Price: 5$   Age:  </Text> 
           <Button full large style={styles.btnBook}> 
             <Text style={styles.btnText}> Book a table </Text>
           </Button>
+          </Animatable.View>
         </Content>
       </Container>
     );

@@ -18,9 +18,6 @@ const DEFAULT_VALUES = {
     logoUrl: 'http://lviv-online.com/ua/wp-content/uploads/2016/09/malevich-club-lviv-logo.jpg',
     rating: 4.5,
   },
-  event: {
-    photoUrl: 'https://scontent.flwo1-1.fna.fbcdn.net/v/t35.0-12/23516209_1967578123509144_294036789_o.jpg?oh=024b55ac16e78119d6f9b3b4a4b46c44&oe=5A0B9CDA',
-  }
 }
 
 class EventCard extends Component {
