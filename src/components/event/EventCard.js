@@ -39,7 +39,7 @@ class EventCard extends Component {
     return (
       <TouchableWithoutFeedback onPress={() => this.handleEventPress()}>
        <View>
-      <Card style={{ flex: 0, backgroundColor: 'black' }}>
+      <Card style={{ flex: 0, /*backgroundColor: 'black'*/ }}>
       <CardItem>
         <Left>
            <Thumbnail source={{uri: DEFAULT_VALUES.club.logoUrl }} />
@@ -56,7 +56,7 @@ class EventCard extends Component {
          </Right>
       </CardItem>
       <CardItem cardBody>
-        <Image source={{uri: DEFAULT_VALUES.event.photoUrl }} style={styles.bodyImage}/>
+        <Image source={{uri: data.photoUrl }} style={styles.bodyImage}/>
       </CardItem>
       <CardItem style={{flex: 1}}>
         <Text style={styles.nameText}>{data.name}</Text>

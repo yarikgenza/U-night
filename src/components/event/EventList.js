@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import { View } from 'react-native';
-import { List, Spinner } from 'native-base';
+import { List, Spinner, Text } from 'native-base';
 import EventCard from './EventCard';
 
 @inject('event')
@@ -27,7 +27,10 @@ class EventList extends Component {
     const renderEvents = () => {
       const { events } = this;
       return events.map(item => (
-        <EventCard data={item} key={item._id} {...this.props}/>
+        <View key={item._id}>
+          <EventCard data={item} key={item._id} {...this.props}/>
+          <Text key={item._id} style={styles.tomorrowText}>Tomorrow</Text>
+        </View>
       ));
     }
 
@@ -36,6 +39,14 @@ class EventList extends Component {
         { this.isLoading ? <Spinner /> : renderEvents() }
       </List>
     );
+  }
+}
+
+const styles = {
+  tomorrowText: {
+    color: 'white',
+    margin: 10,
+    alignSelf: 'center'
   }
 }
 
