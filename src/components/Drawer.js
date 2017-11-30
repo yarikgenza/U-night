@@ -17,7 +17,7 @@ export default class DrawerWrapper extends Component {
         openDrawerOffset={0.3}
         tapToClose
         tweenHandler={Drawer.tweenPresets.parallax}
-        content={<SideBar />}
+        content={<SideBar {...this.props} />}
         onClose={() => this.props.ui.closeDrawer()}
         open={isDrawerOpen}
       >

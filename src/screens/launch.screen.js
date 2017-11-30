@@ -19,6 +19,10 @@ class LaunchScreen extends Component {
     bgColor: new Animated.Value(0),
   }
 
+  componentWillMount() {
+    this.props.ui.setNavigation(this.props.navigation);
+  }
+
   componentDidMount = async () => {
     const isAuthorized = await this.props.auth.isUserAuthorized();
     if (!isAuthorized) {
