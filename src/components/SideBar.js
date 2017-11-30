@@ -8,22 +8,22 @@ const rows = [
   {
     name: 'Events',
     route: 'Event',
-    icon: 'ios-pin',
+    icon: 'ios-browsers',
   },
   {
     name: 'Scan code',
     route: 'Scan',
-    icon: 'flag',
+    icon: 'md-qr-scanner',
   },
   {
     name: 'Clubs',
     route: 'Clubs',
-    icon: 'md-checkmark-circle-outline',
+    icon: 'md-wine',
   },
   {
     name: 'Leaderboard',
     route: 'Leaderboard',
-    icon: 'ios-contact',
+    icon: 'md-podium',
   },
   {
     name: 'Profile',
