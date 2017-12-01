@@ -9,7 +9,7 @@ import theme from '../theme';
 const { deviceHeight, deviceWidth } = theme;
 
 @inject('auth')
-@inject('ui') 
+@inject('ui')
 @observer
 class LaunchScreen extends Component {
   
