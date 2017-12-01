@@ -25,7 +25,7 @@ class LaunchScreen extends Component {
 
   componentDidMount = async () => {
     const isAuthorized = await this.props.auth.isUserAuthorized();
-    if (!isAuthorized) {
+    if (isAuthorized) {
       this.animateBackground();
       setTimeout(() => {
         const { navigate } = this.props.navigation;
@@ -47,6 +47,7 @@ class LaunchScreen extends Component {
         toValue: -(theme.deviceHeight / 8),
         duration: 1000,
         easing: Easing.linear(),
+        //useNativeDriver: true,
       }
     ).start();
   }
@@ -96,6 +97,7 @@ class LaunchScreen extends Component {
       <Animatable.View
         style={styles.formContainer}
         animation="fadeIn"
+        useNativeDriver
         delay={2500}
       >
         <Button  onPress={this.onSignInPress}
@@ -127,6 +129,7 @@ class LaunchScreen extends Component {
       <Animatable.View
         animation="fadeIn"
         delay={250}
+        useNativeDrawer
         style={Object.assign(styles.layout, {
           backgroundColor: bgColor,
         })}
