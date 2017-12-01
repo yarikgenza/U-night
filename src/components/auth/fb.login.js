@@ -42,7 +42,7 @@ export default class FacebookLogin extends Component {
 
 const styles = {
   button: {
-    width: (theme.deviceWidth - theme.deviceWidth / 4),
+    width: theme.deviceWidth - (theme.deviceWidth / 4),
     height: theme.deviceHeight / 12,
     backgroundColor: 'rgb(52, 80, 163)',
     borderRadius: 5

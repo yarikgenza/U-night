@@ -15,7 +15,7 @@ class LaunchScreen extends Component {
   
   state = {
     showForm: false,
-    logoTop: new Animated.Value(deviceHeight / 8),
+    logoTop: new Animated.Value((deviceHeight / 5) - 84),
     bgColor: new Animated.Value(0),
   }
 
@@ -44,10 +44,9 @@ class LaunchScreen extends Component {
     Animated.timing(
       this.state.logoTop,
       {
-        toValue: -(theme.deviceHeight / 8),
+        toValue: -((deviceHeight / 5) - 42),
         duration: 1000,
         easing: Easing.linear(),
-        //useNativeDriver: true,
       }
     ).start();
   }
@@ -166,14 +165,14 @@ const styles = {
     marginLeft: 50,
   },
   skipBtn: {
-    width: 300,
+    width: (deviceWidth - (deviceWidth / 4)) - 10, // 5 - borderRadius
     height: 50,
     margin: 5,
     borderRadius: 5,
     backgroundColor: '#9e4ed4',
   },
   signInBtn: {
-    width: 300,
+    width: (deviceWidth - (deviceWidth / 4)) - 10, // 5 - borderRadius
     height: 50,
     margin: 5,
     borderRadius: 5,
