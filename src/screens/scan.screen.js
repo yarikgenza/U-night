@@ -7,6 +7,7 @@ import Camera from 'react-native-camera';
 import * as Animatable from 'react-native-animatable';
 
 import NavBar from '../components/NavBar';
+import ScanResult from '../components/scan/scan.result';
 
 import theme from '../theme';
 const { deviceHeight, deviceWidth } = theme;
@@ -14,20 +15,30 @@ const { deviceHeight, deviceWidth } = theme;
 @observer
 class Scan extends Component {
 
-  @observable  showScanner = false;
-  @observable imgCode = 0;
+  @observable show = 'start';
+  @observable code = '';
 
   onScanPress = () => {
-    this.showScanner = true;
+    this.show = 'scanner';
   }
 
   handleClose = () => {
-    this.showScanner = false;
+    this.show = 'start';
   }
 
   onCodeRead = ({ data }) => {
-    alert(data);
-    this.showScanner = false;
+    const { navigation } = this.props;
+    this.code = data;
+    this.show = 'result';
+  }
+
+  onDonePress() {
+    const { navigation } = this.props;
+    navigation.navigate('Event');
+  }
+
+  onBackPress = () => {
+    this.show = 'scanner';
   }
 
   render() {
@@ -57,7 +68,7 @@ class Scan extends Component {
       </View>
     );
 
-    return this.showScanner ? renderScanner() : (
+    const renderStartScreen = () => (
       <View style={styles.layout}>
         <NavBar title='Scan code' />
         <Animatable.Image
@@ -75,12 +86,20 @@ class Scan extends Component {
         <View style={styles.buttonContainer}>
           <Button style={styles.button} block light
             onPress={this.onScanPress}
-          >
+           >
             <Text style={styles.buttonText}>Scan QR-code</Text>
           </Button>
         </View>
       </View>
     );
+
+    if (this.show === 'scanner') {
+      return renderScanner();
+    } else if (this.show === 'result') {
+      return <ScanResult code={this.code} onBackPress={() => this.onBackPress()} onDonePress={() => this.onDonePress()}/>
+    } else {
+      return renderStartScreen();
+    }
   }
 }
 
