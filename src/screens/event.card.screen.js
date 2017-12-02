@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { Image, BackHandler } from 'react-native';
 import { Container, Content, Card, CardItem, Thumbnail, Text, View, Left, Right, Body, Button } from 'native-base';
 import * as Animatable from 'react-native-animatable';
 
@@ -25,6 +25,13 @@ const DEFAULT_VALUES = {
 };
 
 class EventCardScreen extends Component {
+
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      this.props.navigation.goBack();
+      return true;
+    });
+  }
 
   onBookPress = () => { console.warn('not implemented now')};
 

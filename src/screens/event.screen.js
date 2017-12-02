@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BackHandler } from 'react-native';
 import { Container, Content, Body, Text } from 'native-base';
 
 import NavBar from '../components/NavBar';
@@ -8,6 +9,19 @@ const {
 } = components;
 
 class EventScreen extends Component {
+
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      const { routeName } = this.props.navigation.state;
+
+      if (routeName !== 'Event') {
+        this.props.navigation.goBack();
+        return false;
+      }
+      return true;
+    });
+  }
+
   render() {
     return (
       <Container style={styles.container}>
