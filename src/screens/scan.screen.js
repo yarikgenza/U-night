@@ -25,6 +25,11 @@ class Scan extends Component {
     this.showScanner = false;
   }
 
+  onCodeRead = ({ data }) => {
+    alert(data);
+    this.showScanner = false;
+  }
+
   render() {
     const renderScanner = () => (
       <View style={styles.container}>
@@ -33,6 +38,8 @@ class Scan extends Component {
           ref={(cam) => {
             this.camera = cam;
           }}
+          barCodeTypes={['qr']}
+          onBarCodeRead={data => this.onCodeRead(data)}
           style={styles.preview}
           type={'back'}
           aspect={Camera.constants.Aspect.fill}
