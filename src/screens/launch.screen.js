@@ -9,19 +9,23 @@ import theme from '../theme';
 const { deviceHeight, deviceWidth } = theme;
 
 @inject('auth')
-@inject('ui') 
+@inject('ui')
 @observer
 class LaunchScreen extends Component {
   
   state = {
     showForm: false,
-    logoTop: new Animated.Value(deviceHeight / 8),
+    logoTop: new Animated.Value((deviceHeight / 5) - 84),
     bgColor: new Animated.Value(0),
+  }
+
+  componentWillMount() {
+    this.props.ui.setNavigation(this.props.navigation);
   }
 
   componentDidMount = async () => {
     const isAuthorized = await this.props.auth.isUserAuthorized();
-    if (!isAuthorized) {
+    if (isAuthorized) {
       this.animateBackground();
       setTimeout(() => {
         const { navigate } = this.props.navigation;
@@ -40,7 +44,7 @@ class LaunchScreen extends Component {
     Animated.timing(
       this.state.logoTop,
       {
-        toValue: -(theme.deviceHeight / 8),
+        toValue: -((deviceHeight / 5) - 42),
         duration: 1000,
         easing: Easing.linear(),
       }
@@ -92,6 +96,7 @@ class LaunchScreen extends Component {
       <Animatable.View
         style={styles.formContainer}
         animation="fadeIn"
+        useNativeDriver
         delay={2500}
       >
         <Button  onPress={this.onSignInPress}
@@ -123,6 +128,7 @@ class LaunchScreen extends Component {
       <Animatable.View
         animation="fadeIn"
         delay={250}
+        useNativeDrawer
         style={Object.assign(styles.layout, {
           backgroundColor: bgColor,
         })}
@@ -159,14 +165,14 @@ const styles = {
     marginLeft: 50,
   },
   skipBtn: {
-    width: 300,
+    width: (deviceWidth - (deviceWidth / 4)) - 10, // 5 - borderRadius
     height: 50,
     margin: 5,
     borderRadius: 5,
     backgroundColor: '#9e4ed4',
   },
   signInBtn: {
-    width: 300,
+    width: (deviceWidth - (deviceWidth / 4)) - 10, // 5 - borderRadius
     height: 50,
     margin: 5,
     borderRadius: 5,

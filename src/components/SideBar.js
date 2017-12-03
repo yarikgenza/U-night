@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { inject } from 'mobx-react';
 import { Container, Content, View, List, Text, ListItem, Icon, Left, Right, Thumbnail } from 'native-base';
 
 import theme from '../theme';
@@ -27,14 +28,21 @@ const rows = [
   },
   {
     name: 'Profile',
-    route: 'profileScreen',
+    route: 'UserProfile',
     icon: 'ios-contact',
   },
 ];
 
 const avaUrl = 'https://scontent.flwo1-1.fna.fbcdn.net/v/t35.0-12/24251309_1975643022702654_91538323_o.jpg?oh=4f1ff6131abaebfc0476a6bc08268ee3&oe=5A22C612';
 
+@inject('ui')
 class SideBar extends Component {
+
+  onRoutePress = (name) => {
+    const { ui } = this.props;
+    ui.closeDrawer();
+    ui.navigation.navigate(name);
+  }
 
   render() {
     return (
@@ -50,7 +58,7 @@ class SideBar extends Component {
         </View>
          <List
             dataArray={rows} renderRow={row => (
-              <ListItem button>
+              <ListItem button onPress={() => this.onRoutePress(row.route)}>
                 <Left>
                   <Icon active name={row.icon} style={{ color: 'black', fontSize: 26, width: 30 }} />
                   <Text>{row.name}</Text>

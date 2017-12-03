@@ -2,6 +2,7 @@ import LaunchScreen from './launch.screen';
 import LoginScreen from './login.screen';
 import EventScreen from './event.screen';
 import EventCardScreen from './event.card.screen';
+import ScanScreen from './scan.screen';
 
 import SoonScreen from './soon.screen';
 
@@ -10,6 +11,7 @@ const screens = {
   Login: { screen: LoginScreen },
   Event: { screen: EventScreen },
   EventCard: { screen: EventCardScreen },
+  Scan: { screen: ScanScreen },
   Soon: { screen: SoonScreen },
 }
 

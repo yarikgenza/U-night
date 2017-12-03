@@ -46,9 +46,9 @@ class EventCardScreen extends Component {
         <NavBar title={event.name} />
         <Content>
           <View style={styles.imgContainer}>
-            <Animatable.Image animation="bounceInUp" source={{uri: event.photoUrl }} style={styles.imgContainer}/>
+            <Animatable.Image delay={150}animation="bounceInUp" useNativeDriver source={{uri: event.photoUrl }} style={styles.imgContainer}/>
           </View>
-          <Animatable.View animation="fadeInUp" delay={100} style={styles.clubContainer}>
+          <Animatable.View animation="fadeIn" delay={100} style={styles.clubContainer}>
             <CardItem>
               <Left>
                 <Thumbnail source={{uri: DEFAULT_VALUES.club.logoUrl }} />
@@ -65,7 +65,7 @@ class EventCardScreen extends Component {
          </Right>
         </CardItem>
           </Animatable.View>
-          <Animatable.View animation="fadeInUp" delay={200}>
+          <Animatable.View animation="fadeIn" delay={200}>
            <Text style={styles.eventName}>{event.name}</Text>
            <CardItem statyle={styles.describeEvent}>
               <Text style={styles.describeText}>{event.description}</Text>

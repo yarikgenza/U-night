@@ -9,6 +9,7 @@ export default class Ui {
     extendObservable(this, {
       title: 'U-night',
       isDrawerOpen: false,
+      navigation: {},
     }, state);
   }
 
@@ -18,5 +19,9 @@ export default class Ui {
 
   @action openDrawer() {
     this.isDrawerOpen = true;
+  }
+
+  @action setNavigation(obj) {
+    this.navigation = obj;
   }
 }
