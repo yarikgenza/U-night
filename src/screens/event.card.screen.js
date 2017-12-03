@@ -33,7 +33,10 @@ class EventCardScreen extends Component {
     });
   }
 
-  onBookPress = () => { console.warn('not implemented now')};
+  onBookPress = () => {
+    const { navigation } = this.props;
+    navigation.navigate('Soon', { title: 'Boot a table' });
+  };
 
   render() {
     const { event } = this.props.navigation.state.params;
@@ -67,8 +70,8 @@ class EventCardScreen extends Component {
            <CardItem statyle={styles.describeEvent}>
               <Text style={styles.describeText}>{event.description}</Text>
           </CardItem>
-          <Text style={styles.additionalInfo}> Price: 5$   Age:  </Text> 
-          <Button full large style={styles.btnBook}> 
+          <Text style={styles.additionalInfo}> Price: 50 UAH</Text> 
+          <Button full large style={styles.btnBook} onPress={this.onBookPress}> 
             <Text style={styles.btnText}> Book a table </Text>
           </Button>
           </Animatable.View>
