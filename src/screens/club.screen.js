@@ -4,6 +4,7 @@ import { Container, Content, Card, CardItem, Thumbnail, Text, View, Left, Right,
 import Carousel from 'react-native-swipeable-parallax-carousel';
 
 import NavBar from '../components/NavBar';
+import StarRating from '../components/StarRating';
 import theme from '../theme';
 const { deviceHeight, deviceWidth } = theme;
 
@@ -33,13 +34,25 @@ class ClubScreen extends Component {
       <Container>
         <NavBar title={club.name} left="back" leftHandler={this.onBackPress}/>
         <Content>
-
-        <Carousel
-          navigation
-          navigationType="dots"
-          navigationColor="white"
-          data={getCarouselData(club.photosUrl)}
-        />
+          <Carousel
+            navigation
+            navigationType="dots"
+            navigationColor="white"
+            data={getCarouselData(club.photosUrl)}
+          />
+          <CardItem>
+            <Left>
+              <Text style={styles.name}>{club.name}</Text>
+            </Left>
+            <Right>
+              <StarRating
+                maxStars={5}
+                rating={5}
+                disabled
+                starSize={20}
+              />
+            </Right>
+          </CardItem>
 
           {/*<View style={styles.imgContainer}>
             <Animatable.Image delay={150}animation="bounceInUp" useNativeDriver source={{uri: event.photoUrl }} style={styles.imgContainer}/>
@@ -79,35 +92,10 @@ class ClubScreen extends Component {
 }
 
 const styles = {
-  imgContainer: {
-    width: deviceWidth,
-    height: deviceHeight / 3,
-  },
-  date: {
-    fontSize: 21,
-  },
-  dateDay: {
-    color: '#800080',
-  },
-  time: {
-    fontSize: 24,
-    fontWeight:'500',
-    lineHeight: 30,
-    borderLeftWidth: 4,
-    borderLeftColor: '#800080',
-    paddingLeft: 10
-  },
-  doubleDot: {
-    fontSize: 25,
-    fontWeight:'500',
-    color: '#800080',
-  },
-  eventName: {
-    padding: 15,
+  name: {
+    fontWeight: 'bold',
     fontSize: 20,
-    textAlign: 'center',
   },
-  
   describeText: {
     paddingTop: 15,
     paddingLeft: 25,
