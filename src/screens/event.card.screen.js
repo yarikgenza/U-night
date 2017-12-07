@@ -30,12 +30,17 @@ class EventCardScreen extends Component {
     navigation.navigate('Soon', { title: 'Book a table' });
   };
 
+  onBackPress = () => {
+    const { navigation } = this.props;
+    navigation.goBack();
+  };
+
   render() {
     const { event } = this.props.navigation.state.params;
 
     return (
       <Container>
-        <NavBar title={event.name} />
+        <NavBar title={event.name} left="back" leftHandler={this.onBackPress}/>
         <Content>
           <View style={styles.imgContainer}>
             <Animatable.Image delay={150}animation="bounceInUp" useNativeDriver source={{uri: event.photoUrl }} style={styles.imgContainer}/>
