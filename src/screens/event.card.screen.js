@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, BackHandler } from 'react-native';
+import { Image, BackHandler, TouchableWithoutFeedback } from 'react-native';
 import { Container, Content, Card, CardItem, Thumbnail, Text, View, Left, Right, Body, Button } from 'native-base';
 import * as Animatable from 'react-native-animatable';
 
@@ -35,6 +35,13 @@ class EventCardScreen extends Component {
     navigation.goBack();
   };
 
+  onClubPress()  {
+    const { navigate } = this.props.navigation;
+    navigate('Club', {
+      club: this.props.navigation.state.params.event.owner,
+    });
+  }
+
   render() {
     const { event } = this.props.navigation.state.params;
 
@@ -45,6 +52,7 @@ class EventCardScreen extends Component {
           <View style={styles.imgContainer}>
             <Animatable.Image delay={150}animation="bounceInUp" useNativeDriver source={{uri: event.photoUrl }} style={styles.imgContainer}/>
           </View>
+          <TouchableWithoutFeedback onPress={() => this.onClubPress()}>
           <Animatable.View animation="fadeIn" delay={100} style={styles.clubContainer}>
             <CardItem>
               <Left>
@@ -62,6 +70,7 @@ class EventCardScreen extends Component {
          </Right>
         </CardItem>
           </Animatable.View>
+          </TouchableWithoutFeedback>
           <Animatable.View animation="fadeIn" delay={200}>
            <Text style={styles.eventName}>{event.name}</Text>
            <CardItem statyle={styles.describeEvent}>

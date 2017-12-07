@@ -20,14 +20,21 @@ class EventCard extends Component {
     });
   }
 
+  handleClubPress()  {
+    const { navigate } = this.props.navigation;
+    navigate('Club', {
+      club: this.props.item.owner,
+    });
+  }
+
   render () {
 
     const { item } = this.props;
 
     return (
-      <TouchableWithoutFeedback onPress={() => this.handleEventPress()}>
-       <View>
       <Card style={{ flex: 0 }}>
+      <TouchableWithoutFeedback onPress={() => this.handleClubPress()}>
+      <View>
       <CardItem>
         <Left>
            <Thumbnail source={{uri: item.owner.logoUrl }} />
@@ -43,10 +50,14 @@ class EventCard extends Component {
           </View>
          </Right>
       </CardItem>
-      <CardItem cardBody>
-        <Image source={{uri: item.photoUrl }} style={styles.bodyImage}/>
-      </CardItem>
-      <CardItem style={{flex: 1}}>
+      </View>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={() => this.handleEventPress()}>
+       <View>
+        <CardItem cardBody>
+          <Image source={{uri: item.photoUrl }} style={styles.bodyImage}/>
+        </CardItem>
+        <CardItem style={{flex: 1}}>
         <Text style={styles.nameText}>{item.name}</Text>
         <View style={{marginLeft: 'auto'}}>
           <Text style={styles.time}>
@@ -57,9 +68,9 @@ class EventCard extends Component {
           </Text>
         </View>
       </CardItem>
+      </View>
+      </TouchableWithoutFeedback>
     </Card>
-    </View>
-    </TouchableWithoutFeedback>
     );
   }
 }
