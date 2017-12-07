@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, BackHandler } from 'react-native';
-import { Container, Content, Card, CardItem, Thumbnail, Text, View, Left, Right, Body, Button } from 'native-base';
+import { Container, Content, Card, CardItem, Icon, Text, View, Left, Right, Body, Button } from 'native-base';
 import Carousel from 'react-native-swipeable-parallax-carousel';
 
 import NavBar from '../components/NavBar';
@@ -53,6 +53,9 @@ class ClubScreen extends Component {
               />
             </Right>
           </CardItem>
+          <View>
+            <Text style={styles.location}><Icon style={styles.icon} name="md-pin"/>   {club.address}</Text>
+          </View>
 
           {/*<View style={styles.imgContainer}>
             <Animatable.Image delay={150}animation="bounceInUp" useNativeDriver source={{uri: event.photoUrl }} style={styles.imgContainer}/>
@@ -96,25 +99,13 @@ const styles = {
     fontWeight: 'bold',
     fontSize: 20,
   },
-  describeText: {
-    paddingTop: 15,
-    paddingLeft: 25,
-    paddingBottom: 15,
-    fontSize: 19,
+  location: {
+    alignSelf: 'center',
+    margin: 5,
   },
-  additionalInfo: {
-    paddingTop: 15,
-    paddingBottom: 15,
-    fontSize: 17,
-    textAlign: 'center',
-  },
-  btnBook: {
-    borderRadius: 0,
-    backgroundColor: '#7515a3',
-  },
-  btnText: {
-    fontSize: 17,
-    lineHeight: -1,
+  icon: {
+    fontSize: 18,
+    color: '#9e4ed4'
   }
 };
 
