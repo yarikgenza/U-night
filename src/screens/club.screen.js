@@ -22,6 +22,11 @@ class ClubScreen extends Component {
     navigation.goBack();
   };
 
+  onFeedbackPress = () => {
+    const { navigation } = this.props;
+    navigation.navigate('Soon', { title: 'Left a feedback' });
+  };
+
   render() {
     const { club } = this.props.navigation.state.params;
 
@@ -56,38 +61,20 @@ class ClubScreen extends Component {
           <View>
             <Text style={styles.location}><Icon style={styles.icon} name="md-pin"/>   {club.address}</Text>
           </View>
-
-          {/*<View style={styles.imgContainer}>
-            <Animatable.Image delay={150}animation="bounceInUp" useNativeDriver source={{uri: event.photoUrl }} style={styles.imgContainer}/>
-          </View>
-          <Animatable.View animation="fadeIn" delay={100} style={styles.clubContainer}>
-            <CardItem>
-              <Left>
-                <Thumbnail source={{uri: event.owner.logoUrl }} />
-           <Body>
-             <Text>{event.owner.name}</Text>
-             <Text note>Rating: 5</Text>
-           </Body>
-         </Left>
-         <Right>
-           <Text style={styles.date}>{getDayNumber(event.startAt)} {getMonthText(event.startAt)}</Text>
-           <View style={styles.day}>
-            <Text style={styles.dateDay}>23:00 - 04:00</Text>
-          </View>
-         </Right>
-        </CardItem>
-          </Animatable.View>
-          <Animatable.View animation="fadeIn" delay={200}>
-           <Text style={styles.eventName}>{event.name}</Text>
-           <CardItem statyle={styles.describeEvent}>
-              <Text style={styles.describeText}>{event.description}</Text>
+          <CardItem>
+            <Text style={styles.description}>{club.description}</Text>
           </CardItem>
-          <Text style={styles.additionalInfo}> Price: 50 UAH</Text> 
-          <Button full large style={styles.btnBook} onPress={this.onBookPress}>
-            <Text style={styles.btnText}> Book a table </Text>
+          <View style={styles.info}>
+          <Left>
+            <Text><Icon style={styles.icon} name="ios-call"/>  {club.phoneNumber}</Text>
+          </Left>
+          <Right>
+            <Text><Icon style={styles.icon} name="ios-mail"/>  {club.email}</Text>
+          </Right>
+          </View>
+          <Button full large style={styles.btnFeedback} onPress={this.onFeedbackPress}>
+            <Text style={styles.btnText}> Left a feedback</Text>
           </Button>
-          </Animatable.View>
-    */}
         </Content>
       </Container>
     );
@@ -103,9 +90,24 @@ const styles = {
     alignSelf: 'center',
     margin: 5,
   },
+  info: {
+    flexDirection: 'row',
+    paddingLeft: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingRight: 15,
+  },
   icon: {
     fontSize: 18,
     color: '#9e4ed4'
+  },
+  btnFeedback: {
+    borderRadius: 0,
+    backgroundColor: '#7515a3',
+  },
+  btnText: {
+    fontSize: 17,
+    lineHeight: -1,
   }
 };
 
