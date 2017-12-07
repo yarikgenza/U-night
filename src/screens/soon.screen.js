@@ -22,7 +22,7 @@ class SoonScreen extends Component {
           <Icon style={styles.icon} name="build" />
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.text}>This page is under development...</Text>
+          <Text style={styles.text}>Coming soon...</Text>
         </View>
         <View style={styles.buttonContainer}>
           <Button style={styles.button} block light onPress={this.onBackPress}>
