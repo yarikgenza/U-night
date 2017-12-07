@@ -22,14 +22,19 @@ const rows = [
     icon: 'md-wine',
   },
   {
-    name: 'Leaderboard',
-    route: 'Leaderboard',
-    icon: 'md-podium',
+    name: 'Offers',
+    route: 'Offers',
+    icon: 'md-cube',
   },
   {
     name: 'Profile',
     route: 'UserProfile',
     icon: 'ios-contact',
+  }, 
+  {
+    name: 'Leaderboard',
+    route: 'Leaderboard',
+    icon: 'md-podium',
   },
 ];
 

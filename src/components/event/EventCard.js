@@ -11,57 +11,48 @@ const {
   getWeekDayText,
 } = dateUtil;
 
-  // Default values. Replace with provided by api when api ready.
-const DEFAULT_VALUES = {
-  club: {
-    name: 'Malevich club',
-    logoUrl: 'http://lviv-online.com/ua/wp-content/uploads/2016/09/malevich-club-lviv-logo.jpg',
-    rating: 4.5,
-  },
-}
-
 class EventCard extends Component {
 
   handleEventPress() {
     const { navigate } = this.props.navigation;
     navigate('EventCard', {
-      event: Object.assign(DEFAULT_VALUES, this.props.data),
+      event: this.props.item,
     });
   }
 
   render () {
 
-    const { data } = this.props;
+    const { item } = this.props;
 
     return (
       <TouchableWithoutFeedback onPress={() => this.handleEventPress()}>
        <View>
-      <Card style={{ flex: 0, /*backgroundColor: 'black'*/ }}>
+      <Card style={{ flex: 0 }}>
       <CardItem>
         <Left>
-           <Thumbnail source={{uri: DEFAULT_VALUES.club.logoUrl }} />
+           <Thumbnail source={{uri: item.owner.logoUrl }} />
            <Body>
-             <Text>{DEFAULT_VALUES.club.name}</Text>
-             <Text note>Rating: {DEFAULT_VALUES.club.rating}</Text>
+             <Text>{item.owner.name}</Text>
+             <Text note>Rating: 5</Text>
            </Body>
          </Left>
          <Right>
-           <Text style={styles.date}>{getDayNumber(data.startAt)} {getMonthText(data.startAt)}</Text>
+           <Text style={styles.date}>{getDayNumber(item.startAt)} {getMonthText(item.startAt)}</Text>
            <View style={styles.day}>
-            <Text style={styles.dateDay}>{getWeekDayText(data.startAt)}</Text>
+            <Text style={styles.dateDay}>{getWeekDayText(item.startAt)}</Text>
           </View>
          </Right>
       </CardItem>
       <CardItem cardBody>
-        <Image source={{uri: data.photoUrl }} style={styles.bodyImage}/>
+        <Image source={{uri: item.photoUrl }} style={styles.bodyImage}/>
       </CardItem>
       <CardItem style={{flex: 1}}>
-        <Text style={styles.nameText}>{data.name}</Text>
+        <Text style={styles.nameText}>{item.name}</Text>
         <View style={{marginLeft: 'auto'}}>
           <Text style={styles.time}>
-            {getDateHour(data.startAt)}
+            {getDateHour(item.startAt)}
             <Text style={styles.doubleDot}>:
-              <Text style={styles.time}>{getDateMinute(data.startAt)}</Text>
+              <Text style={styles.time}>{getDateMinute(item.startAt)}</Text>
             </Text>
           </Text>
         </View>
