@@ -29,7 +29,7 @@ class EventList extends Component {
       return events.map(item => (
         <View key={item._id}>
           <EventCard item={item} key={item._id} {...this.props}/>
-          <Text key={item._id} style={styles.tomorrowText}>Tomorrow</Text>
+          <Text key={item._id} style={styles.tomorrowText}>---------------</Text>
         </View>
       ));
     }
