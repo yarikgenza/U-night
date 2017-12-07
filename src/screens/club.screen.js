@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image, BackHandler } from 'react-native';
 import { Container, Content, Card, CardItem, Thumbnail, Text, View, Left, Right, Body, Button } from 'native-base';
-import * as Animatable from 'react-native-animatable';
+import Carousel from 'react-native-swipeable-parallax-carousel';
 
 import NavBar from '../components/NavBar';
 import theme from '../theme';
@@ -16,11 +16,6 @@ class ClubScreen extends Component {
     });
   }
 
-  /* onBookPress = () => {
-    const { navigation } = this.props;
-    navigation.navigate('Soon', { title: 'Book a table' });
-  };*/
-
   onBackPress = () => {
     const { navigation } = this.props;
     navigation.goBack();
@@ -29,10 +24,23 @@ class ClubScreen extends Component {
   render() {
     const { club } = this.props.navigation.state.params;
 
+    getCarouselData = data => data.map((item, key) => ({
+      id: item,
+      imagePath: item,
+    }));
+
     return (
       <Container>
         <NavBar title={club.name} left="back" leftHandler={this.onBackPress}/>
         <Content>
+
+        <Carousel
+          navigation
+          navigationType="dots"
+          navigationColor="white"
+          data={getCarouselData(club.photosUrl)}
+        />
+
           {/*<View style={styles.imgContainer}>
             <Animatable.Image delay={150}animation="bounceInUp" useNativeDriver source={{uri: event.photoUrl }} style={styles.imgContainer}/>
           </View>
