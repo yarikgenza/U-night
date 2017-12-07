@@ -28,7 +28,7 @@ class EventList extends Component {
       const { events } = this;
       return events.map(item => (
         <View key={item._id}>
-          <EventCard data={item} key={item._id} {...this.props}/>
+          <EventCard item={item} key={item._id} {...this.props}/>
           <Text key={item._id} style={styles.tomorrowText}>Tomorrow</Text>
         </View>
       ));
