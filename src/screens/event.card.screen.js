@@ -16,14 +16,6 @@ const {
 import theme from '../theme';
 const { deviceHeight, deviceWidth } = theme;
 
-const DEFAULT_VALUES = {
-  club: {
-    name: 'Malevich club',
-    logoUrl: 'http://lviv-online.com/ua/wp-content/uploads/2016/09/malevich-club-lviv-logo.jpg',
-    rating: 4.5,
-  },
-};
-
 class EventCardScreen extends Component {
 
   componentDidMount() {
@@ -35,7 +27,7 @@ class EventCardScreen extends Component {
 
   onBookPress = () => {
     const { navigation } = this.props;
-    navigation.navigate('Soon', { title: 'Boot a table' });
+    navigation.navigate('Soon', { title: 'Book a table' });
   };
 
   render() {
@@ -51,10 +43,10 @@ class EventCardScreen extends Component {
           <Animatable.View animation="fadeIn" delay={100} style={styles.clubContainer}>
             <CardItem>
               <Left>
-                <Thumbnail source={{uri: DEFAULT_VALUES.club.logoUrl }} />
+                <Thumbnail source={{uri: event.owner.logoUrl }} />
            <Body>
-             <Text>{DEFAULT_VALUES.club.name}</Text>
-             <Text note>Rating: {DEFAULT_VALUES.club.rating}</Text>
+             <Text>{event.owner.name}</Text>
+             <Text note>Rating: 5</Text>
            </Body>
          </Left>
          <Right>
@@ -71,7 +63,7 @@ class EventCardScreen extends Component {
               <Text style={styles.describeText}>{event.description}</Text>
           </CardItem>
           <Text style={styles.additionalInfo}> Price: 50 UAH</Text> 
-          <Button full large style={styles.btnBook} onPress={this.onBookPress}> 
+          <Button full large style={styles.btnBook} onPress={this.onBookPress}>
             <Text style={styles.btnText}> Book a table </Text>
           </Button>
           </Animatable.View>
