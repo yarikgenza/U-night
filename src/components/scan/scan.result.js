@@ -27,7 +27,7 @@ class ScanResult extends Component {
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.text}>Congratulations!</Text>
-          <Text style={styles.text}>You have won a free coctail</Text>
+          <Text style={styles.text}>You have won a free cocktail</Text>
         </View>
         <View style={styles.buttonContainer}>
           <Button style={styles.button} block light onPress={this.props.onDonePress}>
