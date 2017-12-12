@@ -73,7 +73,7 @@ class ClubScreen extends Component {
           </Right>
           </View>
           <Button full large style={styles.btnFeedback} onPress={this.onFeedbackPress}>
-            <Text style={styles.btnText}> Left a feedback</Text>
+            <Text style={styles.btnText}> Leave a feedback</Text>
           </Button>
         </Content>
       </Container>
