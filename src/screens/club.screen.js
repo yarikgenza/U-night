@@ -88,7 +88,7 @@ const styles = {
   },
   location: {
     alignSelf: 'center',
-    margin: 5,
+    margin: 10,
   },
   info: {
     flexDirection: 'row',

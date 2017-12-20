@@ -38,7 +38,7 @@ const rows = [
   },
 ];
 
-const avaUrl = 'https://scontent.flwo1-1.fna.fbcdn.net/v/t35.0-12/24251309_1975643022702654_91538323_o.jpg?oh=4f1ff6131abaebfc0476a6bc08268ee3&oe=5A22C612';
+const avaUrl = 'https://cdn1.savepice.ru/uploads/2017/12/20/205cb733f1d1ad2e0983ec4e463ed0ed-full.jpg';
 
 @inject('ui')
 class SideBar extends Component {
