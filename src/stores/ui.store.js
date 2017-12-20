@@ -9,11 +9,19 @@ export default class Ui {
     extendObservable(this, {
       title: 'U-night',
       isDrawerOpen: false,
+      navigation: {},
     }, state);
   }
 
-  @action
-  toggleDrawer(open) {
-    this.isDrawerOpen = ((open !== undefined) ? open : !this.isDrawerOpen);
+  @action closeDrawer() {
+    this.isDrawerOpen = false;
+  }
+
+  @action openDrawer() {
+    this.isDrawerOpen = true;
+  }
+
+  @action setNavigation(obj) {
+    this.navigation = obj;
   }
 }
