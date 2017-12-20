@@ -3,7 +3,7 @@ import { Image, Animated, Easing, TouchableHighlight } from 'react-native';
 import { View, Text, Button, Icon } from 'native-base';
 import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
-import * as Animatable from 'react-native-animatable';
+import * as Animatable from 'react-native-animatable'; 
 
 import theme from '../theme';
 const { deviceHeight, deviceWidth } = theme;
